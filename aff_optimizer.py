@@ -8,7 +8,7 @@ def optimize(s: str) -> str:
   header = ("AudioOffset:{}".format(ao.groups()[0]) + 
             ("\nTimingPointDensityFactor:{}".format(tpdf.groups()[0]) if tpdf else "") + 
             "\n-\n")
-  content = re.sub("(?<=[,-])0?([1-9]?[0-9]*\.[1-9]*)0*", lambda a: a.groups()[0], s[i+3:])
+  content = re.sub("(?<=[,-])0?([1-9]?[0-9]*\.(0*[1-9]+|[1-9]*))0*", lambda a: a.groups()[0], s[i+3:])
   content = re.sub("arctap\(", "at(", content)
   content = re.sub("\s", "", content)
   return header + content
