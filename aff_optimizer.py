@@ -3,7 +3,7 @@ import re
 
 def optimize(s: str) -> str:
   i = s.find("\n-\n")
-  ao = re.search("AudioOffset *: *([0-9]*) *", s[:i])
+  ao = re.search("AudioOffset *: *([0-9-]*) *", s[:i])
   tpdf = re.search("TimingPointDensityFactor *: *([0-9.]*) *", s[:i])
   header = ("AudioOffset:{}".format(ao.groups()[0]) + 
             ("\nTimingPointDensityFactor:{}".format(tpdf.groups()[0]) if tpdf else "") + 
